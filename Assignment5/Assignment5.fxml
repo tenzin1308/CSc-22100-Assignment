@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Assignment5.Assignment5Controller">
+   <left>
+      <BorderPane BorderPane.alignment="CENTER">
+         <center>
+            <VBox spacing="10.0">
+               <TitledPane animated="false" text="Drawing Color">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+                  <AnchorPane minWidth="0.0" prefWidth="143.0">
+                     <RadioButton fx:id="rbBlack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#colorChangeEventHandler" selected="true" text="Black">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                        <toggleGroup>
+                           <ToggleGroup fx:id="tgColor" />
+                        </toggleGroup>
+                     </RadioButton>
+                     <RadioButton fx:id="rbGreen" layoutX="14.0" layoutY="43.0" mnemonicParsing="false" onAction="#colorChangeEventHandler" text="Green" textFill="LIME" toggleGroup="$tgColor">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </RadioButton>
+                     <RadioButton fx:id="rbRed" layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#colorChangeEventHandler" text="Red" textFill="RED" toggleGroup="$tgColor">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </RadioButton>
+                     <RadioButton fx:id="rbBlue" layoutX="14.0" layoutY="98.0" mnemonicParsing="false" onAction="#colorChangeEventHandler" text="Blue" textFill="BLUE" toggleGroup="$tgColor">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </RadioButton>
+                     <RadioButton fx:id="rbBrown" layoutX="13.0" layoutY="125.0" mnemonicParsing="false" onAction="#colorChangeEventHandler" text="Brown" textFill="BROWN" toggleGroup="$tgColor">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </RadioButton>
+                  </AnchorPane>
+               </TitledPane>
+               <TitledPane animated="false" text="Pen Size">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="143.0">
+                     <RadioButton fx:id="rbSmall" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#penSizeChangeEventHandler" text="Small (2Pts)">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                        <toggleGroup>
+                           <ToggleGroup fx:id="tgPenSize" />
+                        </toggleGroup>
+                     </RadioButton>
+                     <RadioButton fx:id="rbMed" layoutX="15.0" layoutY="43.0" mnemonicParsing="false" onAction="#penSizeChangeEventHandler" selected="true" text="Medium (6Pts)" toggleGroup="$tgPenSize">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </RadioButton>
+                     <RadioButton fx:id="rbLarge" layoutX="15.0" layoutY="71.0" mnemonicParsing="false" onAction="#penSizeChangeEventHandler" text="Large (10Pts)" toggleGroup="$tgPenSize">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </RadioButton>
+                     <RadioButton fx:id="rbXLarge" layoutX="15.0" layoutY="99.0" mnemonicParsing="false" onAction="#penSizeChangeEventHandler" text="XLarge (14Pts)" toggleGroup="$tgPenSize">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </RadioButton>
+                  </AnchorPane>
+               </TitledPane>
+            </VBox>
+         </center>
+         <bottom>
+            <VBox spacing="10.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+               <Button fx:id="btnSerializeXML" alignment="CENTER" mnemonicParsing="false" onAction="#SerializeXMLButtonEventHandler" prefHeight="30.0" prefWidth="145.0" text="Serialize to XML" textAlignment="CENTER">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Button>
+               <Button fx:id="btnUndo" alignment="CENTER" mnemonicParsing="false" onAction="#undoButtonEventHandler" prefHeight="30.0" prefWidth="145.0" text="Undo" textAlignment="CENTER">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Button>
+               <Button fx:id="btnClear" mnemonicParsing="false" onAction="#clearButtonEventHandler" prefHeight="30.0" prefWidth="145.0" style="-fx-background-color: red;" text="Clear" textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="14.0" />
+                  </font>
+               </Button>
+            </VBox>
+         </bottom>
+      </BorderPane>
+   </left>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <HBox prefHeight="30.0" prefWidth="604.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fx:id="txtBG" strokeType="OUTSIDE" strokeWidth="0.0" text="Background" textAlignment="CENTER" wrappingWidth="108.14892578125">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtWhite" strokeType="OUTSIDE" strokeWidth="0.0" text="White" textAlignment="CENTER" wrappingWidth="50.14892578125">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Text>
+                  <Slider fx:id="slideBar" max="255.0" />
+                  <Text fx:id="txtBlue" strokeType="OUTSIDE" strokeWidth="0.0" text="Blue" textAlignment="CENTER" wrappingWidth="38.14892578125">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <Pane fx:id="panelDraw" onMouseDragged="#drawingAreaMouseDragged" prefHeight="624.0" prefWidth="596.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets left="10.0" />
+               </BorderPane.margin></Pane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>
