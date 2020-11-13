@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.stage.Stage;
 import javax.xml.bind.annotation.XmlElement;
 
 
@@ -72,14 +73,39 @@ public class Assignment5Controller {
         }
     }
 
+    /**
+     * Private member to set the pen size
+     */
     private PenSize penSize = PenSize.MEDIUM;
+    /**
+     * Private member to set the color
+     */
     private DrawColor drawColor = DrawColor.BLACK;
+    /**
+     * Private member for the horizontal slide bar
+     */
     private double slideBarValue;
+    /**
+     * Private member for red color of background
+     */
     private int red;
+    /**
+     * Private member for green color of background
+     */
     private int green;
     
+    /**
+     * Private member of List type to store the circle
+     */
     private List<A5Shape> listShapes;
+    /**
+     * Private member to store individual circle
+     */
     private ListA5Shape circleShapes;
+    /**
+     * Private member for file chooser
+     */
+    private FileChooser fc;
 
     @FXML
     private ResourceBundle resources;
@@ -193,30 +219,28 @@ public class Assignment5Controller {
     
     @FXML
     void SerializeXMLButtonEventHandler(ActionEvent event) throws IOException {
-//        circleShapes.setShapes(listShapes);
-//        try(BufferedWriter output = Files.newBufferedWriter(Paths.get("shapes.xml"))){
-//            System.out.println(Paths.get("shapes.xml"));
-//           JAXB.marshal(circleShapes, output);
-//        }
         
-        
+        //Working code
         circleShapes.setShapes(listShapes);
-        try {
-            try (XMLEncoder x = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("shapes.xml")))) {
-                x.writeObject(circleShapes);
-            }
-        }catch (FileNotFoundException ex){
-            Logger.getLogger(Assignment5Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        fc.setTitle("Save Dialog");
+        fc.setInitialFileName("SerializeXML");
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML file", "*.xml"),
+                new FileChooser.ExtensionFilter("Text file", "*.txt"));
         
-//        FileChooser fc = new FileChooser();
-//        fc.setTitle("Save");
-//        fc.setInitialFileName("SerializeXML");
-//        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML file", "*.xml"),
-//                new FileChooser.ExtensionFilter("Text file", "*.txt"));
-//        File file = fc.showOpenDialog(null);
-//        fc.setInitialDirectory(file.getParentFile());
-//        
+        try{
+            
+            File file = fc.showSaveDialog(null);
+            fc.setInitialDirectory(file.getParentFile());
+            try {
+                try (XMLEncoder x = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(file.getAbsolutePath().toString())))) {
+                    x.writeObject(circleShapes);
+                }
+            }catch (FileNotFoundException ex){
+                Logger.getLogger(Assignment5Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }catch (Exception ex){
+            
+        }
 
     }
     
@@ -237,6 +261,7 @@ public class Assignment5Controller {
             }
         });
         panelDraw.setStyle(String.format("-fx-background-color: #%02x%02x%02x", 255, 255, 255));
+        fc = new FileChooser();
         assert rbBlack != null : "fx:id=\"rbBlack\" was not injected: check your FXML file 'Assignment5.fxml'.";
         assert tgColor != null : "fx:id=\"tgColor\" was not injected: check your FXML file 'Assignment5.fxml'.";
         assert rbGreen != null : "fx:id=\"rbGreen\" was not injected: check your FXML file 'Assignment5.fxml'.";
